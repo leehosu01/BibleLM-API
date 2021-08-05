@@ -3,20 +3,16 @@ import flask
 from flask import Flask
 from BibleLM import inference
 app = Flask(__name__)
-@app.route("/generate", methods=["GET","POST"])
-def generate():
-    data = {"success": False}
-    # get the request parameters
-    params = flask.request.json
-    if (params == None):
-        params = flask.request.args
-
-    # if parameters are found, echo the msg parameter
-    if (params != None):
-        #view & model work
-        data["data"] = params.get("msg")
-        data["file_name"] = params.get("file")
-        data["success"] = True
+@app.route("/inference", methods=["GET","POST"])
+def inference():
+    try:
+    	params = flask.request.json
+        params = dict(params)
+        sentence    = params.get("sentence", "")
+        request_cnt = int(params.get("cnt", "1"))
+        data.update({'candidates': inference.inference(f'<|endoftext|>{sentence}', request_cnt)})
+        data.update({"success": True})
+    except: data = {"success": False}
     return flask.jsonify(data)
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int("5000"), debug=True)
