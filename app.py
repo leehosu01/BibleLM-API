@@ -1,6 +1,6 @@
 #flask
 from flask import Flask
-from BibleLM import inference
+#from BibleLM import inference
 app = Flask(__name__)
 @app.route("/generate", methods=["GET","POST"])
 def generate():
