@@ -7,6 +7,7 @@ from BibleLM import inference as model_inference
 app = Flask(__name__)
 CORS(app) 
 
+import subprocess
 @app.route("/inference", methods=["GET","POST"])
 def inference():
     try:
