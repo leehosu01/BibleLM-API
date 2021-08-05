@@ -10,7 +10,7 @@ def inference():
         params = dict(params)
         sentence    = params.get("sentence", "")
         request_cnt = int(params.get("cnt", "1"))
-        data.update({'candidates': inference.inference(f'<|endoftext|>{sentence}', request_cnt)})
+        data.update({'candidates': inference.inference(sentence, request_cnt)})
         data.update({"success": True})
     except: data = {"success": False}
     return flask.jsonify(data)
