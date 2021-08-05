@@ -2,9 +2,13 @@
 
 FROM python:3.7
 
-WORKDIR /app
-
+RUN useradd -ms /bin/bash admin
 COPY . /app
+WORKDIR /app
+RUN chown -R admin:admin /app
+RUN chmod 755 /app
+USER admin
+
 
 RUN python -m pip install git+https://github.com/leehosu01/BibleLM.git@lite
 
