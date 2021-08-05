@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/inference", methods=["GET","POST"])
 def inference():
     try:
-    	params = flask.request.json
+        params = flask.request.json
         params = dict(params)
         sentence    = params.get("sentence", "")
         request_cnt = int(params.get("cnt", "1"))
