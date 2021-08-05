@@ -1,7 +1,7 @@
 #flask
 import flask
 from flask import Flask
-from BibleLM import inference
+from BibleLM import inference as model_inference
 app = Flask(__name__)
 @app.route("/inference", methods=["GET","POST"])
 def inference():
@@ -12,9 +12,10 @@ def inference():
 
         params = dict(params)
         sentence    = params.get("sentence", "")
-        request_cnt = int(params.get("cnt", "1"))
+        request_cnt = int(params.get("samples", "1"))
+        request_cnt = min(8, request_cnt)
         data = {}
-        data.update({'candidates': inference.inference(sentence, request_cnt)})
+        data.update({'candidates': model_inference.inference(sentence, request_cnt) if request_cnt > 0 else []})
         data.update({"success": True})
     except Exception as e:
         data = {"success": False, 'error' : str(e)}
