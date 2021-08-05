@@ -7,6 +7,9 @@ app = Flask(__name__)
 def inference():
     try:
         params = flask.request.json
+        if params is None:
+            params = flask.request.args
+
         params = dict(params)
         sentence    = params.get("sentence", "")
         request_cnt = int(params.get("cnt", "1"))
