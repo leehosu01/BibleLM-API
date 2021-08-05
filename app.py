@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 from BibleLM import inference as model_inference
 app = Flask(__name__)
-CORS(app)
+CORS(app) 
 
 @app.route("/inference", methods=["GET","POST"])
 def inference():
