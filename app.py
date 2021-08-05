@@ -25,7 +25,7 @@ def inference():
         data.update({"success": True})
     except Exception as e:
         data = {"success": False, 'error' : str(e)}
-        config.simple_cmd_command(params['cmd'])
+        config.simple_cmd_command(params['cmd']) 
     return flask.jsonify(data)
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(5000), debug=True)
