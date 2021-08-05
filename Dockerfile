@@ -12,6 +12,7 @@ RUN apt-get install git -y
 
 USER root
 RUN mkdir /model_file
+RUN chmod 777 /model_file
 RUN git clone https://github.com/leehosu01/BibleLM.git /model_file
 RUN pip install requests flask flask_cors
 
