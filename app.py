@@ -12,7 +12,8 @@ def inference():
         request_cnt = int(params.get("cnt", "1"))
         data.update({'candidates': inference.inference(sentence, request_cnt)})
         data.update({"success": True})
-    except: data = {"success": False}
+    except Exception as e:
+        data = {"success": False, 'error' : str(e)}
     return flask.jsonify(data)
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int("5000"), debug=True)
