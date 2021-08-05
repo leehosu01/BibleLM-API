@@ -16,7 +16,7 @@ def inference():
         request_cnt = int(params.get("samples", "1"))
         request_cnt = min(8, request_cnt)
         data = {}
-        data.update({'candidates': model_inference.inference(sentence, request_cnt) if request_cnt > 0 else []}, "/opt/app/BibleLM/Bible_model_ckpts")
+        data.update({'candidates': model_inference.inference(sentence, request_cnt, "/opt/app/BibleLM/Bible_model_ckpts") if request_cnt > 0 else []})
         data.update({"success": True})
     except Exception as e:
         data = {"success": False, 'error' : str(e)}
