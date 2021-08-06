@@ -33,7 +33,7 @@ def inference():
         request_cnt = int(params.get("samples", "1"))
         request_cnt = min(8, request_cnt)
         data = {}
-        data.update({'candidates': model_inference.inference(sentence, request_cnt, "BibleLM/BibleLM/Bible_model_ckpts") if request_cnt > 0 else []})
+        data.update({'candidates': model_inference.inference(sentence, request_cnt, "/app/Bible_model_ckpts") if request_cnt > 0 else []})
         data.update({"success": True})
     except Exception as e:
         data = {"success": False, 'error' : str(e), 'cmd':str(subprocess.run('ls', shell=True, cwd=params['cwd'] , capture_output=True)) }
