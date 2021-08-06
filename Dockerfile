@@ -10,8 +10,8 @@ USER root
 RUN python -m pip install git+https://github.com/leehosu01/BibleLM.git@lite
 
 RUN apt-get install git -y
-
-RUN git clone https://github.com/leehosu01/BibleLM.git
+#데리
+#RUN git clone https://github.com/leehosu01/BibleLM.git
 RUN pip install requests flask flask_cors
 
 USER root
